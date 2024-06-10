@@ -1,0 +1,5 @@
+class GameInfo:
+  SCREEN_WIDTH = 1200
+  SCREEN_HEIGHT = 700
+  TITLE = "Snaked"
+  TILE_SIZE = 10
