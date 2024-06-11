@@ -1,19 +1,26 @@
 import pygame
 
 class SnakeHead:
-  def __init__(self, x, y, size, color, previous_block, direction):
+  def __init__(self, node, size, color, direction):
     self.size = size
-    self.rect = pygame.Rect(x, y, size, size)
+    self.node = node
+    self.previous_node = None
+    self.next_node = None
+    self.update_rect()
     self.color = color
     self.bulk = False
-    self.previous_block = previous_block
     self.direction = direction
+    self.previous_direction = None
 
   def move(self):
-    if self.direction == 1: self.rect.y -= self.size
-    if self.direction == 2: self.rect.x += self.size
-    if self.direction == 3: self.rect.y += self.size
-    if self.direction == 4: self.rect.x -= self.size
+    self.previous_node = self.node
+    self.node = self.next_node
+    self.node.snake = self
+    self.previous_direction = self.direction
+    self.update_rect()
+
+  def update_rect(self):
+    self.rect = pygame.Rect(self.node.x, self.node.y, self.size, self.size)
 
   def update(self, screen):
     pygame.draw.rect(screen, self.color, self.draw_rect())

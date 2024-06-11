@@ -8,16 +8,23 @@ class EmptyLevel:
     self.height = height
     self.block_size = block_size
     self.entities = []
+    self.snakes = []
     self.nodes = []
     for row in range(self.height // self.block_size):
+      row_nodes = []
       for col in range(self.width // self.block_size):
-        self.nodes.append(Node(col * self.block_size, row * self.block_size))
+        row_nodes.append(Node(col * self.block_size, row * self.block_size))
+      self.nodes.append(row_nodes)
   
   def update(self, screen):
     pygame.draw.rect(screen, EmptyLevel.COLOR, pygame.Rect(0, 0, self.width, self.height))
+    for s in self.snakes:
+      s.update(screen)
     for e in self.entities:
       e.update(screen)
   
   def move(self):
+    for s in self.snakes:
+      s.move(self.nodes)
     for e in self.entities:
       e.move()

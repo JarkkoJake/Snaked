@@ -1,14 +1,16 @@
 import pygame
 
 class SnakeBlock:
-  def __init__(self, x, y, size, color, next_block, previous_block):
+  def __init__(self, node, size, color, next_block):
     self.size = size
-    self.rect = pygame.Rect(x, y, size, size)
+    self.node = node
+    self.previous_node = None
+    self.update_rect()
     self.color = color
     self.bulk = False
     self.next_block = next_block
-    self.previous_block = previous_block
     self.calculate_direction()
+    self.previous_direction = None
   
   def calculate_direction(self):
     next_rect = self.next_block.rect
@@ -24,11 +26,15 @@ class SnakeBlock:
     if next_rect.x < self.rect.x: self.direction = 4
 
   def move(self):
-    if self.direction == 1: self.rect.y -= self.size
-    if self.direction == 2: self.rect.x += self.size
-    if self.direction == 3: self.rect.y += self.size
-    if self.direction == 4: self.rect.x -= self.size
-    self.calculate_direction()
+    self.previous_node = self.node
+    self.node = self.next_block.previous_node
+    self.node.snake = self
+    self.previous_direction = self.direction
+    self.direction = self.next_block.previous_direction
+    self.update_rect()
+  
+  def update_rect(self):
+    self.rect = pygame.Rect(self.node.x, self.node.y, self.size, self.size)
 
   def update(self, screen):
     pygame.draw.rect(screen, self.color, self.draw_rect())
