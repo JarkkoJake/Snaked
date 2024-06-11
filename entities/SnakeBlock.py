@@ -39,7 +39,9 @@ class SnakeBlock:
     self.rect = pygame.Rect(self.node.x, self.node.y, self.size, self.size)
 
   def update(self, screen):
-    pygame.draw.rect(screen, self.color if self.bulk <= 1 else (0,255,0), self.draw_rect())
+    pygame.draw.rect(screen, self.color, self.draw_rect())
   
   def draw_rect(self):
+    if self.bulk > 1:
+      return pygame.Rect(self.rect.x - 1, self.rect.y - 1, self.rect.width + 2, self.rect.height + 2)
     return pygame.Rect(self.rect.x + 1, self.rect.y + 1, self.rect.width - 2, self.rect.height - 2)

@@ -26,7 +26,7 @@ class SnakeTail:
   def move(self):
     if self.next_block.bulk == 1:
       self.next_block.bulk = 0
-      new_block = SnakeBlock(self.next_block.previous_node, self.size, (0,0,0), self.next_block)
+      new_block = SnakeBlock(self.next_block.previous_node, self.size, self.color, self.next_block)
       self.next_block = new_block
       return new_block
     else:
