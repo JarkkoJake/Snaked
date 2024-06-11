@@ -9,6 +9,7 @@ class Snake:
     self.block_size = block_size
 
     self.can_set_new_direction = True
+    self.dead = False
 
     self.snake_blocks = []
 
@@ -45,6 +46,14 @@ class Snake:
       elif head_node_col < 0: head_node_col = len(nodes[0]) - 1 
     next_head_node = nodes[head_node_row][head_node_col]
     self.snake_blocks[0].next_node = next_head_node
+
+    if next_head_node.entity:
+      if next_head_node.entity.lethal(self):
+        self.dead = True
+        return
+    if next_head_node.snake:
+      self.dead = True
+      return
 
     new_block = None
     for block in self.snake_blocks:
