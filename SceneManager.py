@@ -19,7 +19,7 @@ class SceneManager:
       SceneManager.current_scene.update(screen, player_input)
 
   def set_game_mode(game_mode):
-    GameManager.set_game_mode(game_mode)
+    GameManager.set_game_mode(game_mode, lambda: SceneManager.set_active_menu(LevelSelectMenu))
     if not LevelSelectMenu.initialized:
       LevelSelectMenu.initialize(SceneManager.select_level, lambda: SceneManager.set_active_menu(MainMenu), GameInfo.SCREEN_WIDTH,\
         GameInfo.SCREEN_HEIGHT, SceneManager.settings_button)
