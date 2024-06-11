@@ -3,20 +3,16 @@ from .SnakeBlock import SnakeBlock
 from .SnakeTail import SnakeTail
 
 class Snake:
-  def __init__(self, color, x, y, direction, block_size):
+  def __init__(self, color, nodes, direction, block_size):
     self.color = color
     self.direction = direction
-    
-    direction_delta_x = 0
-    direction_delta_y = 0
-    if direction % 2 == 0: direction_delta_x = block_size if direction == 4 else -block_size
-    if direction % 2 == 1: direction_delta_y = block_size if direction == 1 else -block_size
-    
-    self.head = SnakeHead(x, y, block_size, self.color, None, direction)
-    mid_block = SnakeBlock(x + direction_delta_x, y + direction_delta_y, block_size, self.color, self.head, None)
-    self.tail = SnakeTail(x + 2 * direction_delta_x, y + 2 * direction_delta_y, block_size, self.color, mid_block)
-    mid_block.previous_block = self.tail
-    self.snake_blocks = [self.head, mid_block, self.tail]
+
+    self.snake_blocks = []
+
+    for node in nodes:
+      if len(self.snake_blocks) == 0: self.snake_blocks.append(SnakeHead(node.x, node.y, block_size, self.color, None, direction))
+      else: self.snake_blocks.append(SnakeBlock(node.x, node.y, block_size, self.color, self.snake_blocks[-1], None))
+    self.snake_blocks[-1] = SnakeTail(nodes[-1].x, nodes[-1].y, block_size, self.color, self.snake_blocks[-2])
   
   def get_length(self):
     return len(self.snake_blocks)
@@ -30,6 +26,6 @@ class Snake:
     self.direction = direction
   
   def move(self):
-    self.head.direction = self.direction
+    self.snake_blocks[0].direction = self.direction
     for block in self.snake_blocks:
       block.move()

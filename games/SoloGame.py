@@ -7,10 +7,11 @@ class SoloGame:
   count = 0
 
   def reset(block_size):
-    SoloGame.player = Snake((250, 0, 0), 4 * block_size, block_size, 2, block_size)
+    if SoloGame.level == None: return
+    SoloGame.player = Snake((250, 0, 0), SoloGame.level.nodes[2:9], 2, block_size)
     SoloGame.score = 0
     SoloGame.count = 0
-  
+
   def update(screen, player_input):
     SoloGame.count += 1
     if SoloGame.player == None or SoloGame.level == None:
