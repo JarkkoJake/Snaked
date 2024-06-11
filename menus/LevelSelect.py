@@ -1,5 +1,5 @@
 from buttons import BaseButton
-from levels import EmptyLevel
+from levels import EmptyLevel, BorderedLevel
 
 class LevelSelectMenu:
   initialized = False
@@ -14,7 +14,7 @@ class LevelSelectMenu:
     level_1_button = BaseButton(button_x, screen_height / 2 - button_height - button_gap / 2, button_width, button_height,\
       "Empty", lambda: select_level(EmptyLevel))
     level_2_button = BaseButton(button_x, screen_height / 2 + button_gap / 2, button_width, button_height,\
-      "Bordered", lambda: select_level(EmptyLevel))
+      "Bordered", lambda: select_level(BorderedLevel))
 
     
     back_button = BaseButton(button_x, screen_height - button_gap - button_height, button_width, button_height,\
