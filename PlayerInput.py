@@ -43,11 +43,12 @@ class PlayerInput:
     PlayerInput.P_ESCAPE = PlayerInput.C_ESCAPE
 
     # UPDATE CURRENT PRESSES
-    PlayerInput.C_UP = pygame.K_UP
-    PlayerInput.C_DOWN = pygame.K_DOWN
-    PlayerInput.C_LEFT = pygame.K_LEFT
-    PlayerInput.C_RIGHT = pygame.K_RIGHT
-    PlayerInput.C_ESCAPE = pygame.K_ESCAPE
+    keys = pygame.key.get_pressed()
+    PlayerInput.C_UP = keys[pygame.K_UP]
+    PlayerInput.C_DOWN = keys[pygame.K_DOWN]
+    PlayerInput.C_LEFT = keys[pygame.K_LEFT]
+    PlayerInput.C_RIGHT = keys[pygame.K_RIGHT]
+    PlayerInput.C_ESCAPE = keys[pygame.K_ESCAPE]
     PlayerInput.C_MOUSE_DOWN = pygame.mouse.get_pressed()[0]
 
     # UPDATE CURRENT STATE (button press accounted for 1 update)
@@ -58,3 +59,4 @@ class PlayerInput:
     PlayerInput.RIGHT = (not PlayerInput.P_RIGHT) and PlayerInput.C_RIGHT
     PlayerInput.ESCAPE = (not PlayerInput.P_ESCAPE) and PlayerInput.C_ESCAPE
     PlayerInput.MOUSE_DOWN = (not PlayerInput.P_MOUSE_DOWN) and PlayerInput.C_MOUSE_DOWN
+

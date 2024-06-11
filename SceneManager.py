@@ -21,12 +21,16 @@ class SceneManager:
   def set_game_mode(game_mode):
     GameManager.set_game_mode(game_mode)
     if not LevelSelectMenu.initialized:
-      LevelSelectMenu.initialize(GameManager.set_level, lambda: SceneManager.set_active_menu(MainMenu), GameInfo.SCREEN_WIDTH,\
+      LevelSelectMenu.initialize(SceneManager.select_level, lambda: SceneManager.set_active_menu(MainMenu), GameInfo.SCREEN_WIDTH,\
         GameInfo.SCREEN_HEIGHT, SceneManager.settings_button)
     SceneManager.set_active_menu(LevelSelectMenu)
   
   def set_active_menu(menu):
     SceneManager.current_scene = menu
+  
+  def select_level(level):
+    GameManager.set_level(level)
+    SceneManager.current_scene = GameManager
 
   def open_settings_menu():
     if not SettingsMenu.initialized:
