@@ -1,15 +1,15 @@
 import pygame
-class Food:
+class Rock:
   def __init__(self, node, size):
     self.size = size
     self.node = node
-    self.rect = pygame.Rect(node.x + 1, node.y + 1, size-2, size-2)
+    self.rect = pygame.Rect(node.x, node.y, size, size)
     self.deleted = False
   def lethal(self, snake):
-    return False
-  def edible(self, snake):
     return True
+  def edible(self, snake):
+    return False
   def update(self, screen):
-    pygame.draw.rect(screen, (0,100,0), self.rect)
+    pygame.draw.rect(screen, (40,40,40), self.rect)
   def move(self):
     pass

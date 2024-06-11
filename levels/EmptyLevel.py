@@ -1,5 +1,5 @@
 import pygame
-from entities import Node, Food
+from entities import Node, Food, Rock
 
 class EmptyLevel:
   COLOR = (230, 230, 230)
@@ -18,6 +18,9 @@ class EmptyLevel:
     for col in self.nodes[4]:
       col.entity = Food(col, block_size)
       self.entities.append(col.entity)
+    for node in self.nodes[7]:
+      node.entity = Rock(node, block_size)
+      self.entities.append(node.entity)
   
   def update(self, screen):
     pygame.draw.rect(screen, EmptyLevel.COLOR, pygame.Rect(0, 0, self.width, self.height))
