@@ -1,4 +1,5 @@
-from entities import Snake
+from entities import Snake, Food
+import random
 from menus import PauseMenu, DeathMenu
 
 class SoloGame:
@@ -48,6 +49,21 @@ class SoloGame:
     if SoloGame.count >= 5:
       SoloGame.count = 0
       SoloGame.level.move()
+      food_count = 0
+      for e in SoloGame.level.entities:
+        if e.edible(SoloGame.player): food_count += 1
+      needs_food = 5 - food_count
+      available_nodes = []
+      for row in SoloGame.level.nodes:
+        for node in row:
+          if node.snake == None and node.entity == None:
+            available_nodes.append(node)
+      while needs_food > 0:
+        needs_food -= 1
+        pick_node = available_nodes.pop(random.randrange(len(available_nodes)))
+        pick_node.entity = Food(pick_node, SoloGame.block_size)
+        SoloGame.level.entities.append(pick_node.entity)
+        
     
     if SoloGame.paused and not SoloGame.player.dead:
       PauseMenu.update(screen, player_input)
