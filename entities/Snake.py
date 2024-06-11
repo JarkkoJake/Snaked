@@ -8,6 +8,8 @@ class Snake:
     self.direction = direction
     self.block_size = block_size
 
+    self.can_set_new_direction = True
+
     self.snake_blocks = []
 
     for node in nodes:
@@ -23,8 +25,10 @@ class Snake:
       block.update(screen)
   
   def turn(self, direction):
+    if not self.can_set_new_direction: return
     if abs(self.direction - direction) == 2: return
     self.direction = direction
+    self.can_set_new_direction = False
   
   def move(self, nodes):
     self.snake_blocks[0].direction = self.direction
@@ -44,3 +48,5 @@ class Snake:
 
     for block in self.snake_blocks:
       block.move()
+
+    self.can_set_new_direction = True
