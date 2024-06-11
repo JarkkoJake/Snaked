@@ -28,7 +28,6 @@ class Snake:
   def turn(self, direction):
     if abs(self.direction - direction) == 2: return
     self.direction = direction
-    print(self.direction)
   
   def move(self):
     self.head.direction = self.direction
