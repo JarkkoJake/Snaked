@@ -1,4 +1,5 @@
 import pygame
+from .SnakeBlock import SnakeBlock
 
 class SnakeTail:
   def __init__(self, node, size, color, next_block):
@@ -23,11 +24,17 @@ class SnakeTail:
     if next_rect.x < self.rect.x: self.direction = 4
 
   def move(self):
-    self.node.snake = None
-    self.node = self.next_block.previous_node
-    self.node.snake = self
-    self.direction = self.next_block.previous_direction
-    self.update_rect()
+    if self.next_block.bulk == 1:
+      self.next_block.bulk = 0
+      new_block = SnakeBlock(self.next_block.previous_node, self.size, (0,0,0), self.next_block)
+      self.next_block = new_block
+      return new_block
+    else:
+      self.node.snake = None
+      self.node = self.next_block.previous_node
+      self.node.snake = self
+      self.direction = self.next_block.previous_direction
+      self.update_rect()
 
   def update_rect(self):
     self.rect = pygame.Rect(self.node.x, self.node.y, self.size, self.size)

@@ -46,7 +46,12 @@ class Snake:
     next_head_node = nodes[head_node_row][head_node_col]
     self.snake_blocks[0].next_node = next_head_node
 
+    new_block = None
     for block in self.snake_blocks:
-      block.move()
+      block_added = block.move()
+      if block_added: new_block = block_added
+    
+    if new_block:
+      self.snake_blocks.insert(-1, new_block)
 
     self.can_set_new_direction = True

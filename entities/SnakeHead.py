@@ -8,11 +8,12 @@ class SnakeHead:
     self.next_node = None
     self.update_rect()
     self.color = color
-    self.bulk = False
+    self.bulk = 3
     self.direction = direction
     self.previous_direction = None
 
   def move(self):
+    if self.bulk > 0: self.bulk -= 1
     self.previous_node = self.node
     self.node = self.next_node
     self.node.snake = self
