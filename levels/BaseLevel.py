@@ -28,4 +28,4 @@ class BaseLevel:
     for s in self.snakes:
       s.move(self.nodes)
     for e in self.entities:
-      e.move()
+      e.move(self.nodes)

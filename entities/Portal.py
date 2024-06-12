@@ -24,5 +24,5 @@ class Portal:
     return False
   def update(self, screen):
     pygame.draw.rect(screen, self.color, self.rect)
-  def move(self):
+  def move(self, nodes):
     pass

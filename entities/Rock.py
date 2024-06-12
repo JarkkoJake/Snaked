@@ -11,5 +11,5 @@ class Rock:
     return False
   def update(self, screen):
     pygame.draw.rect(screen, (40,40,40), self.rect)
-  def move(self):
+  def move(self, nodes):
     pass

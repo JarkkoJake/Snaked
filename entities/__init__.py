@@ -3,3 +3,4 @@ from .Node import Node
 from .Food import Food
 from .Rock import Rock
 from .Portal import Portal
+from .MovingFood import MovingFood

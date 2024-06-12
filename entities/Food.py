@@ -11,5 +11,5 @@ class Food:
     return True
   def update(self, screen):
     pygame.draw.rect(screen, (0,100,0), self.rect)
-  def move(self):
+  def move(self, nodes):
     pass

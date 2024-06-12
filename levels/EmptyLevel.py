@@ -1,5 +1,4 @@
 import pygame
-from entities import Node, Rock
 from .BaseLevel import BaseLevel
 
 class EmptyLevel(BaseLevel):
