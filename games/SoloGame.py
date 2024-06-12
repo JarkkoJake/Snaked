@@ -1,4 +1,4 @@
-from entities import Snake, Food
+from entities import Snake, Food, Portal
 import random
 from menus import PauseMenu, DeathMenu
 
@@ -46,11 +46,12 @@ class SoloGame:
     SoloGame.level.update(screen)
     if SoloGame.player.dead:
       SoloGame.paused = True
-    if SoloGame.count >= 5:
+    if SoloGame.count >= 60:
       SoloGame.count = 0
       SoloGame.level.move()
       food_count = 0
       for e in SoloGame.level.entities:
+        if isinstance(e, Portal): continue
         if e.edible(SoloGame.player): food_count += 1
       needs_food = 5 - food_count
       available_nodes = []

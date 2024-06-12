@@ -64,8 +64,8 @@ class Snake:
       self.snake_blocks.insert(-1, new_block)
     
     head_node = self.snake_blocks[0].node
-    if head_node.entity and self.snake_blocks[0].bulk == 0:
-      if head_node.entity.edible(self):
+    if head_node.entity:
+      if head_node.entity.edible(self) and self.snake_blocks[0].bulk == 0:
         self.snake_blocks[0].bulk = 3
         head_node.entity.deleted = True
         head_node.entity = None
