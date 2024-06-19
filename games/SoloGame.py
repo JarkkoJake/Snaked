@@ -46,7 +46,7 @@ class SoloGame:
     SoloGame.level.update(screen)
     if SoloGame.player.dead:
       SoloGame.paused = True
-    if SoloGame.count >= 60:
+    if SoloGame.count >= 10:
       SoloGame.count = 0
       SoloGame.level.move()
       food_count = 0

@@ -4,7 +4,7 @@ from .BaseLevel import BaseLevel
 
 class BorderedLevel(BaseLevel):
   COLOR = (230, 230, 230)
-  NAME = "Bordered"
+  NAME = "Spiral"
   def __init__(self, width, height, block_size):
     super().__init__(width, height, block_size)
     for node in self.nodes[0]:

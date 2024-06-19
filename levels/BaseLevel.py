@@ -3,6 +3,7 @@ from entities import Node
 
 class BaseLevel:
   COLOR = (230, 230, 230)
+  NAME = "Level Name"
   def __init__(self, width, height, block_size):
     self.width = width
     self.height = height
