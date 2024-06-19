@@ -7,7 +7,7 @@ class BaseButton:
     self.text = text
     self.on_click = on_click
     self.rect = pygame.Rect(x, y, width, height)
-    self.font = pygame.font.SysFont("Comic Sans MS", 40)
+    self.font = pygame.font.SysFont("Comic Sans MS", height // 2)
     self.text_surface = self.font.render(self.text, False, (0, 0, 0))
     self.text_start_x = self.rect.x + self.rect.width / 2 - self.text_surface.get_rect().width / 2
     self.text_start_y = self.rect.y + self.rect.height / 2 - self.text_surface.get_rect().height / 2
