@@ -6,6 +6,8 @@ class Portal:
     portal_2 = Portal(node2, block_size, color)
     portal_1.pair = portal_2
     portal_2.pair = portal_1
+    node1.entity = portal_1
+    node2.entity = portal_2
     return portal_1, portal_2
   def __init__(self, node, block_size, color):
     self.node = node
