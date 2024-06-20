@@ -1,15 +1,15 @@
-from .Colors import Colors
+from Colors import Colors
 
 class GameSettings:
   numberOfFood = 5
   flies = False
   eggs = False
-  speed = 60
+  speed = 10
   randomRock = 0
   asteroidRate = 0
   player1Color = Colors.BLUE
 
-  player2Color = Colros.RED
+  player2Color = Colors.RED
   coloredFood = False
   coloredFlies = False
   coloredEggs = False

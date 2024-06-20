@@ -1,5 +1,6 @@
 from games import *
 from GameInfo import GameInfo
+from GameSettings import GameSettings
 
 class GameManager:
 
@@ -9,7 +10,7 @@ class GameManager:
   def set_game_mode(game_mode, back_to_level_select):
     GameManager.game_mode = game_mode
     if not GameManager.game_mode.initialized:
-      GameManager.game_mode.initialize(GameInfo.TILE_SIZE, back_to_level_select, GameInfo.SCREEN_WIDTH, GameInfo.SCREEN_HEIGHT)
+      GameManager.game_mode.initialize(GameInfo.TILE_SIZE, GameSettings, back_to_level_select, GameInfo.SCREEN_WIDTH, GameInfo.SCREEN_HEIGHT)
   
   def set_level(level):
     GameManager.level = level
