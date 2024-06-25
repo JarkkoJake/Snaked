@@ -26,10 +26,10 @@ class GameSettings:
     GameSettings.eggs = not GameSettings.eggs
   
   def changeSpeed(increase):
-    if increase and GameSettings.speed > 10:
-      GameSettings.speed -= 10
+    if increase and GameSettings.speed > 5:
+      GameSettings.speed -= 5
     elif not increase and GameSettings.speed < 60:
-      GameSettings.speed += 10
+      GameSettings.speed += 5
 
   def changeRandomRockCount(increase):
     if increase and GameSettings.randomRock < 30:
