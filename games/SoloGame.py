@@ -1,4 +1,4 @@
-from entities import Snake, Food, Portal
+from entities import Snake, Food, Portal, MovingFood, Egg
 import random
 from menus import PauseMenu, DeathMenu
 
@@ -45,14 +45,17 @@ class SoloGame:
     if player_input.LEFT: SoloGame.player.turn(4)
     
     SoloGame.level.update(screen)
+
     if SoloGame.player.dead:
       SoloGame.paused = True
+    
     if SoloGame.count >= SoloGame.game_settings.speed:
       SoloGame.count = 0
       SoloGame.level.move()
+
       food_count = 0
       for e in SoloGame.level.entities:
-        if isinstance(e, Portal): continue
+        if isinstance(e, Portal): continue # Skip portals because edible function is also used for the teleport
         if e.edible(SoloGame.player): food_count += 1
       needs_food = SoloGame.game_settings.numberOfFood - food_count
       if needs_food > 0:
@@ -64,7 +67,12 @@ class SoloGame:
         while needs_food > 0:
           needs_food -= 1
           pick_node = available_nodes.pop(random.randrange(len(available_nodes)))
-          pick_node.entity = Food(pick_node, SoloGame.block_size)
+          roll = random.random()
+          if roll < 0.2 and SoloGame.game_settings.flies:
+            pick_node.entity = MovingFood(pick_node, SoloGame.block_size, random.choice([1, 2, 3, 4]))
+          elif roll > 0.8 and SoloGame.game_settings.eggs:
+            pick_node.entity = Egg(pick_node, SoloGame.block_size)
+          else: pick_node.entity = Food(pick_node, SoloGame.block_size)
           SoloGame.level.entities.append(pick_node.entity)
         
     
