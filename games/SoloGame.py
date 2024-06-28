@@ -1,6 +1,7 @@
 from entities import Snake, Food, Portal, MovingFood, Egg
 import random
 from menus import PauseMenu, DeathMenu
+import pygame
 
 class SoloGame:
   score = 0
@@ -45,6 +46,10 @@ class SoloGame:
     if player_input.LEFT: SoloGame.player.turn(4)
     
     SoloGame.level.update(screen)
+    pygame.draw.rect(screen, (100, 100, 100), pygame.Rect(0, screen.get_height() - 70, screen.get_width(), 70))
+    score_font = pygame.font.SysFont("Comic Sans MS", 35)
+    text_surface = score_font.render("Score: " + str(len(SoloGame.player.snake_blocks)), False, SoloGame.player.color)
+    screen.blit(text_surface, (40, screen.get_height() - 60))
 
     if SoloGame.player.dead:
       SoloGame.paused = True

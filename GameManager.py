@@ -14,7 +14,7 @@ class GameManager:
   
   def set_level(level):
     GameManager.level = level
-    GameManager.game_mode.get_fresh_level = lambda: GameManager.level(GameInfo.SCREEN_WIDTH, GameInfo.SCREEN_HEIGHT, GameInfo.TILE_SIZE)
+    GameManager.game_mode.get_fresh_level = lambda: GameManager.level(GameInfo.SCREEN_WIDTH, GameInfo.SCREEN_HEIGHT - 70, GameInfo.TILE_SIZE)
     GameManager.game_mode.reset()
 
   def update(screen, player_input):
