@@ -48,6 +48,11 @@ class MultiCollab:
     if player_input.RIGHT: MultiCollab.player_1.turn(2)
     if player_input.DOWN: MultiCollab.player_1.turn(3)
     if player_input.LEFT: MultiCollab.player_1.turn(4)
+
+    if player_input.W: MultiCollab.player_2.turn(1)
+    if player_input.D: MultiCollab.player_2.turn(2)
+    if player_input.S: MultiCollab.player_2.turn(3)
+    if player_input.A: MultiCollab.player_2.turn(4)
     
     MultiCollab.level.update(screen)
     pygame.draw.rect(screen, (100, 100, 100), pygame.Rect(0, screen.get_height() - 70, screen.get_width(), 70))
